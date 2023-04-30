@@ -8,7 +8,6 @@ class Node {
 export default class SinglyLinkedList {
     constructor() {
         this.head = null;
-        this.tail = null;
         this.length = 0;
     }
 
@@ -18,10 +17,15 @@ export default class SinglyLinkedList {
         if (!this.head) {
             this.head = newNode;
         } else {
-            this.tail.next = newNode;
+            let curr = this.head;
+
+            while (curr.next) {
+                curr = curr.next;
+            }
+
+            curr.next = newNode;
         }
 
-        this.tail = newNode;
         this.length++;
         return newNode
     }
@@ -39,12 +43,10 @@ export default class SinglyLinkedList {
         }
 
         newTail.next = null
-        this.tail = newTail;
         this.length--;
 
         if (!this.length) {
             this.head = null;
-            this.tail = null;
         }
         return curr
     }
@@ -57,9 +59,6 @@ export default class SinglyLinkedList {
         this.head = currentHead.next;
         this.length--;
 
-        if (!this.length) {
-            this.tail = null;
-        }
         return currentHead
     }
 
@@ -67,12 +66,7 @@ export default class SinglyLinkedList {
     unshift(value) {
         const newNode = new Node(value);
 
-        if (!this.head) {
-            this.tail = newNode;
-        } else {
-            newNode.next = this.head;
-        }
-
+        newNode.next = this.head;
         this.head = newNode;
         this.length++;
         return newNode
@@ -174,7 +168,6 @@ export default class SinglyLinkedList {
             return reversedList
         }
 
-        this.tail = this.head
         this.head = reverseList(this.head)
     }
 
@@ -191,7 +184,6 @@ export default class SinglyLinkedList {
             current = next;
         }
 
-        this.tail = this.head;
         this.head = prev;
         return prev
     }
@@ -268,7 +260,6 @@ export default class SinglyLinkedList {
         }
 
         // prev.next = null;
-        this.tail = prev
         this.head = dummyNode.next
     }
 
@@ -283,3 +274,11 @@ export default class SinglyLinkedList {
         console.log(str);
     }
 }
+
+const a = new SinglyLinkedList()
+a.push(2)
+a.push(1)
+a.push(5)
+a.push(3)
+a.sort()
+a.print()
