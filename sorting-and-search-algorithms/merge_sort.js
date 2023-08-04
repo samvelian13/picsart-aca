@@ -1,11 +1,9 @@
 function merge_sort(arr, first = 0, last = arr.length - 1) {
-
     if (first < last) {
         let mid = Math.floor((first + last) / 2)
 
         merge_sort(arr, first, mid)
         merge_sort(arr, mid + 1, last)
-
         merge(arr, first, mid, last)
     }
 }
@@ -45,5 +43,5 @@ function merge(arr, first, mid, last) {
 
 // const nums = [0, 3, 0, 9, 4, 1, 7, 6];
 const nums = [38, 27, 43, 3, 9, 82, 10];
-const res = merge_sort(nums);
+merge_sort(nums);
 console.log(nums);

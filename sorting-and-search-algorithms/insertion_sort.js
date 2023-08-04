@@ -1,4 +1,4 @@
-const insertionSort = (arr) => {
+export default function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         let currentValue = arr[i];
         let j = i - 1;
@@ -11,6 +11,6 @@ const insertionSort = (arr) => {
     return arr;
 };
 
-const nums = [10, 11, 9, 8, 2, 7, 6];
-insertionSort(nums);
-console.log(nums);
+// const nums = [10, 11, 9, 8, 2, 7, 6];
+// insertionSort(nums);
+// console.log(nums);

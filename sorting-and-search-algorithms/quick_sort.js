@@ -1,67 +1,54 @@
-function quick_sort(arr, first, last) {
-    // if (arr.length <= 1) {
-    //     return arr
-    // }
+function quickSort(arr, first = 0, last = arr.length - 1) {
+    if (arr.length <= 1) {
+        return arr
+    }
 
     if (first < last) {
         let pivotIndex = partition(arr, first, last)
-        quick_sort(arr, first, pivotIndex - 1)
-        quick_sort(arr, pivotIndex + 1, last)
+        quickSort(arr, first, pivotIndex - 1)
+        quickSort(arr, pivotIndex + 1, last)
     }
 }
 
 const partition = function (arr, first, last) {
-    let mid = Math.floor((first + last) / 2)
+    const randomPivotIndex = randomIntFromInterval(first, last)
 
-    sortFirstMiddleLast(arr, first, mid, last)
-    swap(arr, mid, last - 1)
+    if (randomPivotIndex !== last) {
+        swap(arr, randomPivotIndex, last)
+    }
 
-    let pivotIndex = last - 1
-    let pivot = arr[pivotIndex]
-    let indexFromLeft = first + 1
-    let indexFromRight = last - 2
+    const pivotIndex = last
+    let i = first
+    let j = pivotIndex - 1
 
     while (true) {
-        while (arr[indexFromLeft] < pivot) {
-            indexFromLeft++
+        while (arr[i] < arr[pivotIndex]) {
+            i++
         }
 
-        while (arr[indexFromRight] > pivot) {
-            indexFromRight--
+        while (arr[j] >= arr[pivotIndex]) {
+            j--
         }
 
-        if (indexFromLeft < indexFromRight) {
-            swap(arr, indexFromLeft, indexFromRight)
-        } else {
+        if (i >= j) {
             break
         }
+        swap(arr, i, j)
     }
 
-    swap(arr, indexFromLeft, pivotIndex)
-    return indexFromLeft
+    swap(arr, i, pivotIndex)
+    return i
 }
 
-const sortFirstMiddleLast = function (arr, first, mid, last) {
-    if (arr[first] > arr[mid]) {
-        swap(arr, first, mid)
-    }
-
-    if (arr[mid] > arr[last]) {
-        swap(arr, mid, last)
-    }
-
-    if (arr[first] > arr[mid]) {
-        swap(arr, first, mid)
-    }
-}
-
-const nums = [2, 5, 6, 4, 13, 3, 12, 19, 6];
-// const nums = [5, 8, 6, 4, 9, 3, 7, 1, 2];
-const res = quick_sort(nums, 0, nums.length - 1);
+// const nums = [2, 5, 6, 4, 13, 3, 12, 19, 6];
+const nums = [38, 27, 43, 10, 9, 82, 3];
+quickSort(nums);
 console.log(nums);
 
-function swap(items, leftIndex, rightIndex) {
-    const temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
+function swap(arr, i, j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }

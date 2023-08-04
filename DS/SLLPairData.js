@@ -1,29 +1,38 @@
 export class Node {
-    constructor(value, next) {
+    constructor(key, value, next = null) {
+        this.key = key;
         this.value = value;
-        this.next = next ?? null;
+        this.next = next
     }
 }
 
 export class SinglyLinkedList {
-    constructor() {
-        this.head = null;
+    constructor(node) {
+        this.head = node ?? null;
         this.length = 0;
     }
 
     /* Adding a node to the end */
-    push(value) {
-        const newNode = new Node(value);
+    push(key, value) {
+        const newNode = new Node(key, value);
+
         if (!this.head) {
             this.head = newNode;
         } else {
             let curr = this.head;
+            let prev = null
 
-            while (curr.next) {
+            while (curr) {
+                if (curr.key === key) {
+                    curr.value = value;
+                    return curr
+                }
+
+                prev = curr
                 curr = curr.next;
             }
 
-            curr.next = newNode;
+            prev.next = newNode;
         }
 
         this.length++;
@@ -63,8 +72,8 @@ export class SinglyLinkedList {
     }
 
     /* Adding a node to the front */
-    unshift(value) {
-        const newNode = new Node(value);
+    unshift(key, value) {
+        const newNode = new Node(key, value);
 
         newNode.next = this.head;
         this.head = newNode;
@@ -85,6 +94,22 @@ export class SinglyLinkedList {
         }
 
         return currentHead
+    }
+
+    /* Find a node by the key */
+    findByKey(key) {
+        if (!this.head || !key) return undefined;
+        let curr = this.head;
+
+        while (curr) {
+            if (curr.key === key) {
+                break
+            }
+
+            curr = curr.next;
+        }
+
+        return curr
     }
 
     /* Find a node by the value */
@@ -146,16 +171,48 @@ export class SinglyLinkedList {
             return isFound
         }
 
+        this.length--
         prev.next = current.next
         return isFound;
     }
 
-    insert(pos, val) {
-        if (pos < 0 || pos > this.length) return false;
-        if (pos === this.length) return this.push(val);
-        if (pos === 0) return this.unshift(val);
+    /* Find a node by the given key */
+    removeByKey(val) {
+        if (!this.head || !val) return undefined;
 
-        let newNode = new Node(val);
+        if (this.head.key === val) {
+            this.head = this.head.next;
+            return true;
+        }
+
+        let current = this.head;
+        let prev = this.head
+        let isFound = false
+
+        while (current) {
+            if (current.key === val) {
+                isFound = true
+                break
+            }
+            prev = current
+            current = current.next;
+        }
+
+        if (!isFound) {
+            return isFound
+        }
+
+        this.length--
+        prev.next = current.next
+        return isFound;
+    }
+
+    insert(pos, key, val) {
+        if (pos < 0 || pos > this.length) return false;
+        if (pos === this.length) return this.push(key, val);
+        if (pos === 0) return this.unshift(key, val);
+
+        let newNode = new Node(key, val);
         let prev = this.findByPos(pos - 1);
         const temp = prev.next;
         prev.next = newNode;
@@ -282,31 +339,12 @@ export class SinglyLinkedList {
     print() {
         let str = ''
         let current = this.head;
+
         while (current) {
-            str += current.value + ', ';
+            str += current.key + ' : ' + current.value + ', ';
             current = current.next;
         }
 
         console.log(str);
     }
 }
-
-const head = [-1, 5, 3, 4, 0]
-const list = new SinglyLinkedList()
-
-// const head1 = [1, 2, 4], head2 = [1, 3, 4]
-// const list1 = new SinglyLinkedList()
-// const list2 = new SinglyLinkedList()
-// const newList = new SinglyLinkedList()
-//
-// head1.forEach((i) => {
-//     list1.push(i)
-// })
-head.forEach((i) => {
-    list.push(i)
-})
-
-const res = list.sort()
-
-// const newHead = newList.merge(list1.head, list2.head)
-// console.log(newHead);
