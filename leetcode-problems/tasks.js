@@ -1,0 +1,1 @@
+/// 1000 kuj, 10 rab , 24jam unenq, 1tunavor kuj, vor kujne tunavor

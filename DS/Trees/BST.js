@@ -1,5 +1,5 @@
-import Stack from '../Stack.js'
-import Queue from '../Queue.js'
+import Stack from '../Stack/Stack.js'
+import Queue from '../Queue/Queue.js'
 
 export class Node {
     constructor(val, left = null, right = null) {

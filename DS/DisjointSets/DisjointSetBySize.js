@@ -16,14 +16,20 @@ export default class DisjointSetBySize {
 
     findSet(x) {
         let root = x
-        while (root !== this.parent.get(root)) {
-            root = this.parent.get(root)
-        }
 
-        while (x !== root) {
-            const next = this.parent.get(x)
-            this.parent.set(x, root)
-            x = next
+        if (!this.parent.has(x)) {
+            this.parent.set(x, x);
+            this.size.set(x, 1);
+        } else {
+            while (root !== this.parent.get(root)) {
+                root = this.parent.get(root)
+            }
+
+            while (x !== root) {
+                const next = this.parent.get(x)
+                this.parent.set(x, root)
+                x = next
+            }
         }
 
         return root
@@ -64,12 +70,11 @@ export default class DisjointSetBySize {
 }
 
 // const ds = new DisjointSetBySize();
-//
 // ds.makeSet(1);
 // ds.makeSet(2);
 // ds.makeSet(3);
 // ds.makeSet(4);
-//
+
 // console.log('Initial sets:');
 // ds.printSets();
 //
@@ -79,7 +84,7 @@ export default class DisjointSetBySize {
 //
 // console.log('\nSets after union:');
 // ds.printSets();
-//
+
 // console.log('\nFind results:');
 // console.log('find(1):', ds.findSet(1));
 // console.log('find(2):', ds.findSet(2));

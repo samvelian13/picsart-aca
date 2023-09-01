@@ -1,4 +1,4 @@
-import {SinglyLinkedList} from '../SLLPairData.js';
+import {SinglyLinkedList} from '../LinkedList/SLLPairData.js';
 
 class HashMap {
     #capacity;
