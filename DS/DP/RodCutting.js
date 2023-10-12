@@ -43,7 +43,7 @@ function robCutting(length, prices) {
                 // price = Math.max(price, prices[j] + dp[i - j])
                 if (price < prices[j] + dp[i - j]) {
                     price = prices[j] + dp[i - j]
-                    parent[i] = j
+                    parent[j] = i
                 }
             }
 
@@ -55,11 +55,10 @@ function robCutting(length, prices) {
     let n = length
 
     while (n > 0) {
-        console.log(parent[n])
         n -= parent[n]
     }
 
-    return dp[length]
+    return dp[length] // return path parent table
 }
 
 

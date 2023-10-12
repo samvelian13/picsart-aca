@@ -7,7 +7,7 @@ class Node {
 
 export default class MinPriorityQueue {
     #list = []
-    #size = 0
+    size = 0
 
     constructor(arr) {
         if (arr && arr.length) {
@@ -17,8 +17,8 @@ export default class MinPriorityQueue {
     }
 
     #build() {
-        this.#size = this.#list.length
-        for (let i = Math.floor((this.#size - 1) / 2); i >= 0; i--) {
+        this.size = this.#list.length
+        for (let i = Math.floor((this.size - 1) / 2); i >= 0; i--) {
             this.#heapifyDown(i);
         }
     }
@@ -27,7 +27,6 @@ export default class MinPriorityQueue {
         let parentIndex = this.#getParent(i);
 
         while (i > 0 && this.#list[parentIndex].key > this.#list[i].key) {
-            // console.log(i, '===PP____', parentIndex, this.#list);
             this.#swap(i, parentIndex);
             i = parentIndex;
             parentIndex = this.#getParent(parentIndex);
@@ -39,10 +38,10 @@ export default class MinPriorityQueue {
         let left = this.#getLeftChild(i)
         let right = this.#getRightChild(i)
 
-        if (left < this.#size && this.#list[i].key > this.#list[left].key) {
+        if (left < this.size && this.#list[i].key > this.#list[left].key) {
             largest = left
         }
-        if (right < this.#size && this.#list[largest].key > this.#list[right].key) {
+        if (right < this.size && this.#list[largest].key > this.#list[right].key) {
             largest = right
         }
 
@@ -54,19 +53,19 @@ export default class MinPriorityQueue {
 
     insert(key, val) {
         const newNode = new Node(key, val);
-        this.#list[this.#size] = newNode
-        this.#size = this.#size + 1
-        this.#heapifyUp(this.#size - 1);
+        this.#list[this.size] = newNode
+        this.size = this.size + 1
+        this.#heapifyUp(this.size - 1);
         return newNode
     }
 
     extractMin() {
-        if (!this.#size) {
+        if (!this.size) {
             return
         }
         const min = this.#list[0]
-        this.#swap(0, this.#size - 1)
-        this.#size = this.#size - 1
+        this.#swap(0, this.size - 1)
+        this.size = this.size - 1
         this.#heapifyDown(0)
         return min;
     }
@@ -74,18 +73,18 @@ export default class MinPriorityQueue {
     remove(item) {
         let i = 0;
 
-        while (i < this.#size) {
+        while (i < this.size) {
             if (item === this.#list[i])
                 break;
             i++
         }
 
-        if (i >= this.#size) {
+        if (i >= this.size) {
             return
         }
 
-        this.#swap(i, this.#size - 1)
-        this.#size = this.#size - 1
+        this.#swap(i, this.size - 1)
+        this.size = this.size - 1
         this.#heapifyDown(i)
     }
 
@@ -103,15 +102,15 @@ export default class MinPriorityQueue {
     }
 
     sort() {
-        let heapSize = this.#size
+        let heapSize = this.size
         for (let i = this.#list.length - 1; i > 0; i--) {
-            this.#swap(0, this.#size - 1)
-            this.#size = this.#size - 1
+            this.#swap(0, this.size - 1)
+            this.size = this.size - 1
             this.#heapifyDown(0);
         }
 
         this.#list = this.#list.reverse()
-        this.#size = heapSize
+        this.size = heapSize
     }
 
     getTop() {
@@ -119,11 +118,11 @@ export default class MinPriorityQueue {
     }
 
     getList() {
-        return this.#list.slice(0, this.#size)
+        return this.#list.slice(0, this.size)
     }
 
     isEmpty() {
-        return this.#size === 0
+        return this.size === 0
     }
 
     #getParent(i) {

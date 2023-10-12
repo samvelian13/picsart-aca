@@ -1,0 +1,31 @@
+373
+31/08/2023
+
+90 - how do we come to this decision ? (it's like 40)
+90 - must debug again, 40 is fully debugged and all is clear, the same should be for 90 also
+17 - done with 1 for loop (just for information that it's possible)
+
+//
+96. Unique Binary Search Trees (1D)
+264. Ugly Number 2 (1D)
+583. Delete Operation for Two Strings (2D)
+712. Minimum ASCII Delete Sum for Two Strings (2D)
+931. Minimum Falling Path Sum (2D)
+1027. Longest Arithmetic Subsequence(2D)
+1035. Uncrossed Lines (2D)
+//
+5. Longest Palindromic Substring
+For 139 - Top-Down approach required
+
+Greedy:
+406, 452, 670, 1827, 605
+502, 621, 630, 1235, 921, 1402, 1963, 649, 881
+
+
+714 - write without arrays- 28/09/23
+// sort-stack-using-temporary-stack
+Bit Manipulation: 190, 191 .. try to solve these also: 137
+
+Bit manipulation remained problems:
+371, 461, 476, 2433
+Additional: 201, 338, 389

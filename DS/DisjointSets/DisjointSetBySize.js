@@ -74,17 +74,17 @@ export default class DisjointSetBySize {
 // ds.makeSet(2);
 // ds.makeSet(3);
 // ds.makeSet(4);
-
+//
 // console.log('Initial sets:');
 // ds.printSets();
 //
 // ds.union(1, 2);
 // ds.union(3, 4);
 // ds.union(1, 4);
-//
+// //
 // console.log('\nSets after union:');
 // ds.printSets();
-
+//
 // console.log('\nFind results:');
 // console.log('find(1):', ds.findSet(1));
 // console.log('find(2):', ds.findSet(2));

@@ -338,18 +338,20 @@ export class BST {
 
 
 // const arr = [46, 26, 71, 19, 68, 79, 22, 66, 69, 76, 87]
-// const arr = [1, 64, 38, 25, 11, 17, 13, 55, 53, 85, 92, 77, 81]
+const arr = [1, 64, 38, 25, 11, 17, 13, 55, 53, 85, 92, 77, 81]
 const bsTree = new BST()
 
-// let tn1
-// for (let i = 0; i < arr.length; i++) {
-//     if (i === 7 ) {
-//         tn1 = bsTree.insert(arr[i])
-//     } else {
-//         bsTree.insert(arr[i])
-//     }
-// }
-//
+let tn1
+for (let i = 0; i < arr.length; i++) {
+    if (i === 7 ) {
+        tn1 = bsTree.insert(arr[i])
+    } else {
+        bsTree.insert(arr[i])
+    }
+}
+
+console.log(bsTree.levelOrderTraverse());
+
 // const res = bsTree.getSuccessor(tn1)
 // console.log(res);
 // const arr = [1, 64, 38]
